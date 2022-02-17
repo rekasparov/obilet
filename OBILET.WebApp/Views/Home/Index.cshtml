@@ -1,0 +1,65 @@
+﻿@model JourneyResultModel
+
+<div class="page-content">
+    <div class="content-wrapper">
+        <div class="content-inner">
+            <div class="content">
+                <div class="row">
+                    <div class="col-lg-6 col-md-8 col-sm-10 offset-lg-3 offset-md-2 offset-sm-1">
+                        <div class="card">
+                            <div class="card-header bg-indigo">
+                                <div class="media">
+                                    <div class="mr-3">
+                                        <a href="@Url.Action("Index","Landing")" class="btn-icon text-white rounded-pill ml-2"><i class="icon-arrow-left7"></i></a>
+                                    </div>
+                                    <div class="media-body text-center mr-5 text-white">
+                                        <h6 class="mb-0">@Model.OriginLocation - @Model.DestinationLocation</h6>
+                                        <span class="font-size-xs">@Model.DepartureDate.ToString("dd MMMM dddd")</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                @foreach (var journey in Model.Journeies)
+                                {
+                                    <div class="w-100 border mb-3">
+                                        <div class="form-group mb-0">
+                                            <div class="d-flex rounded pl-2">
+                                                <div class="rounded-left pt-2 pr-2 text-center">
+                                                    <div class="form-group font-size-sm mb-0">
+                                                        <span>Kalkış</span>
+                                                    </div>
+                                                    <div class="form-group mb-0">
+                                                        <span class="font-weight-bolder font-size-lg">@journey.Journey.Departure.ToString("HH:mm")</span>
+                                                    </div>
+                                                </div>
+                                                <div class="border-left border-white align-self-end text-center">
+                                                    <div class="form-group pb-1">
+                                                        <i class="icon-arrow-right14"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="border-left border-white pt-2 rounded-right pl-2 text-center">
+                                                    <div class="form-group font-size-sm mb-0">
+                                                        <span>Varış</span>
+                                                    </div>
+                                                    <div class="form-group mb-0">
+                                                        <span class="font-weight-bolder font-size-lg">@journey.Journey.Arrival.ToString("HH:mm")</span>
+                                                    </div>
+                                                </div>
+                                                <div class="py-2 px-3 ml-auto rounded">
+                                                    <button class="btn btn-sm btn-danger">@journey.Journey.OriginalPrice.ToString("#.##") TL</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mb-1 pl-2">
+                                            <span>@journey.Journey.Stops.FirstOrDefault(x => x.isOrigin).name - @journey.Journey.Stops.FirstOrDefault(x => x.isDestination).name</span>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
