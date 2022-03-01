@@ -56,9 +56,15 @@
             '&destinationId=' +
             entries.selectedToVal +
             '&departureDateStr=' +
-            entries.selectedDate;
+            convertDate(entries.selectedDate);
 
         window.location.href = '/Home?' + paremeter;
+    };
+
+    convertDate = (d) => {
+        var date = moment(d, 'DD.MM.YYYY').format('MM.DD.YYYY');
+
+        return date;
     };
 
     changeLocation = (d, l, f, t) => {
